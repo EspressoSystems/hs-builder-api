@@ -3,13 +3,20 @@ use std::{fmt::Display, path::PathBuf};
 use clap::Args;
 use derive_more::From;
 use futures::FutureExt;
-use hotshot_types::{data::VidCommitment, traits::{node_implementation::NodeType, signature_key::SignatureKey}};
+use hotshot_types::{
+    data::VidCommitment,
+    traits::{node_implementation::NodeType, signature_key::SignatureKey},
+};
 use serde::{Deserialize, Serialize};
 use snafu::{OptionExt, ResultExt, Snafu};
 use tagged_base64::TaggedBase64;
 use tide_disco::{api::ApiError, method::ReadState, Api, RequestError, StatusCode};
 
-use crate::{api::load_api, block_metadata::BlockHash, data_source::{self, BuilderDataSource}};
+use crate::{
+    api::load_api,
+    block_metadata::BlockHash,
+    data_source::{self, BuilderDataSource},
+};
 
 #[derive(Args, Default)]
 pub struct Options {
@@ -40,7 +47,6 @@ pub enum BuildError {
     Error { message: String },
 }
 
-
 #[derive(Clone, Debug, From, Snafu, Deserialize, Serialize)]
 #[snafu(visibility(pub))]
 pub enum Error {
@@ -65,14 +71,16 @@ pub enum Error {
     },
 }
 
-
 pub fn define_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
 where
     State: 'static + Send + Sync + ReadState,
     <State as ReadState>::State: Send + Sync + BuilderDataSource<Types>,
     Types: NodeType,
-    <<Types as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType: for<'a> TryFrom<&'a TaggedBase64> + Into<TaggedBase64> + Display,
-    for<'a> <<<Types as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType as TryFrom<&'a TaggedBase64>>::Error: Display,
+    <<Types as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType:
+        for<'a> TryFrom<&'a TaggedBase64> + Into<TaggedBase64> + Display,
+    for<'a> <<<Types as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType as TryFrom<
+        &'a TaggedBase64,
+    >>::Error: Display,
 {
     let mut api = load_api::<State, Error>(
         options.api_path.as_ref(),
@@ -83,9 +91,12 @@ where
         .get("available_blocks", |req, state| {
             async move {
                 let hash = req.blob_param("parent_hash")?;
-                state.get_available_blocks(&hash).await.context(BlockAvailableSnafu {
-                    resource: hash.to_string(),
-                })
+                state
+                    .get_available_blocks(&hash)
+                    .await
+                    .context(BlockAvailableSnafu {
+                        resource: hash.to_string(),
+                    })
             }
             .boxed()
         })?
@@ -93,9 +104,12 @@ where
             async move {
                 let hash = req.blob_param("block_hash")?;
                 let signature = req.blob_param("signature")?;
-                state.claim_block(&hash, &signature).await.context(BlockClaimSnafu {
-                    resource: hash.to_string(),
-                })
+                state
+                    .claim_block(&hash, &signature)
+                    .await
+                    .context(BlockClaimSnafu {
+                        resource: hash.to_string(),
+                    })
             }
             .boxed()
         })?;
