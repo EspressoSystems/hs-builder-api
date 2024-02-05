@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"hs_builder_api":[["impl&lt;I: NodeType&gt; Committable for <a class=\"struct\" href=\"hs_builder_api/block_metadata/struct.HashableBlock.html\" title=\"struct hs_builder_api::block_metadata::HashableBlock\">HashableBlock</a>&lt;I&gt;"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
