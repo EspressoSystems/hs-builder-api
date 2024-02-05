@@ -3,7 +3,6 @@
 //
 // TODO: License
 
-
 use hotshot_types::traits::node_implementation::NodeType;
 use serde::{Deserialize, Serialize};
 
