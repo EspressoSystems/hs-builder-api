@@ -9,10 +9,7 @@ use snafu::{ResultExt, Snafu};
 use tagged_base64::TaggedBase64;
 use tide_disco::{api::ApiError, method::ReadState, Api, RequestError, StatusCode};
 
-use crate::{
-    api::load_api,
-    data_source::BuilderDataSource,
-};
+use crate::{api::load_api, data_source::BuilderDataSource};
 
 #[derive(Args, Default)]
 pub struct Options {
