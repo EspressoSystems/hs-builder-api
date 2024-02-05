@@ -3,19 +3,15 @@ use std::{fmt::Display, path::PathBuf};
 use clap::Args;
 use derive_more::From;
 use futures::FutureExt;
-use hotshot_types::{
-    data::VidCommitment,
-    traits::{node_implementation::NodeType, signature_key::SignatureKey},
-};
+use hotshot_types::traits::{node_implementation::NodeType, signature_key::SignatureKey};
 use serde::{Deserialize, Serialize};
-use snafu::{OptionExt, ResultExt, Snafu};
+use snafu::{ResultExt, Snafu};
 use tagged_base64::TaggedBase64;
 use tide_disco::{api::ApiError, method::ReadState, Api, RequestError, StatusCode};
 
 use crate::{
     api::load_api,
-    block_metadata::BlockHash,
-    data_source::{self, BuilderDataSource},
+    data_source::BuilderDataSource,
 };
 
 #[derive(Args, Default)]

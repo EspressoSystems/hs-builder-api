@@ -9,7 +9,7 @@ pub struct HashableBlock<I: NodeType>(
     <I as NodeType>::BlockPayload,
     <<I as NodeType>::BlockPayload as BlockPayload>::Metadata,
 );
-pub type BlockHash<I: NodeType> = Commitment<HashableBlock<I>>;
+pub type BlockHash<I> = Commitment<HashableBlock<I>>;
 impl<I: NodeType> Default for HashableBlock<I> {
     fn default() -> Self {
         let (bp, bm) = <I as NodeType>::BlockPayload::from_transactions(Vec::new())

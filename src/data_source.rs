@@ -1,10 +1,7 @@
-use std::sync::Arc;
-
 use async_trait::async_trait;
-use commit::Committable;
 use hotshot_types::{
     data::VidCommitment,
-    traits::{node_implementation::NodeType, signature_key::SignatureKey, BlockPayload},
+    traits::{node_implementation::NodeType, signature_key::SignatureKey},
 };
 use tagged_base64::TaggedBase64;
 
