@@ -1,3 +1,3 @@
 (function() {var implementors = {
-"hs_builder_api":[["impl ErrorCompat for <a class=\"enum\" href=\"hs_builder_api/builder/enum.Error.html\" title=\"enum hs_builder_api::builder::Error\">Error</a>"],["impl ErrorCompat for <a class=\"enum\" href=\"hs_builder_api/builder/enum.BuildError.html\" title=\"enum hs_builder_api::builder::BuildError\">BuildError</a>"]]
+"hs_builder_api":[["impl ErrorCompat for <a class=\"enum\" href=\"hs_builder_api/builder/enum.BuildError.html\" title=\"enum hs_builder_api::builder::BuildError\">BuildError</a>"],["impl ErrorCompat for <a class=\"enum\" href=\"hs_builder_api/builder/enum.Error.html\" title=\"enum hs_builder_api::builder::Error\">Error</a>"]]
 };if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
