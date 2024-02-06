@@ -36,8 +36,8 @@ impl<I: NodeType> Committable for HashableBlock<I> {
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(bound = "")]
 pub struct BlockMetadata<I: NodeType> {
-    block_hash: BlockHash<I>,
-    block_size: u64,
-    offered_fee: u64,
+    pub block_hash: BlockHash<I>,
+    pub block_size: u64,
+    pub offered_fee: u64,
     _phantom: PhantomData<I>,
 }
