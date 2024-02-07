@@ -7,7 +7,7 @@ use hotshot_types::{
 use tagged_base64::TaggedBase64;
 
 use crate::{
-    block_metadata::{BlockMetadata, Blockdata},
+    block_info::{AvailableBlockInfo, AvailableBlockData},
     builder::BuildError,
 };
 
@@ -21,11 +21,11 @@ where
     async fn get_available_blocks(
         &self,
         for_parent: &VidCommitment,
-    ) -> Result<Vec<BlockMetadata<I>>, BuildError>;
+    ) -> Result<Vec<AvailableBlockInfo<I>>, BuildError>;
     async fn claim_block(
         &self,
         block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
-    ) -> Result<Blockdata<I>, BuildError>;
+    ) -> Result<AvailableBlockData<I>, BuildError>;
     async fn submit_txn(&self, txn: <I as NodeType>::Transaction) -> Result<(), BuildError>;
 }

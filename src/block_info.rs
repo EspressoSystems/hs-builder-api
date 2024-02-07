@@ -38,20 +38,20 @@ impl<I: NodeType> Committable for HashableBlock<I> {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
-pub struct BlockMetadata<I: NodeType> {
+pub struct AvailableBlockInfo<I: NodeType> {
     pub block_hash: BuilderCommitment,
     pub block_size: u64,
     pub offered_fee: u64,
     pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
-    pub _phantom: PhantomData<I>,
     pub sender: <I as NodeType>::SignatureKey,
+    pub _phantom: PhantomData<I>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
-pub struct Blockdata<I: NodeType> {
+pub struct AvailableBlockData<I: NodeType> {
     pub block_payload: <I as NodeType>::BlockPayload,
     pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
-    pub _phantom: PhantomData<I>,
     pub sender: <I as NodeType>::SignatureKey,
+    pub _phantom: PhantomData<I>,
 }
