@@ -1,7 +1,10 @@
 use std::{hash::Hash, marker::PhantomData};
 
 use commit::{Commitment, Committable};
-use hotshot_types::traits::{node_implementation::NodeType, BlockPayload};
+use hotshot_types::{
+    traits::{node_implementation::NodeType, BlockPayload, signature_key::SignatureKey},
+    utils::BuilderCommitment
+};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
@@ -33,11 +36,22 @@ impl<I: NodeType> Committable for HashableBlock<I> {
     }
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
 pub struct BlockMetadata<I: NodeType> {
-    block_hash: BlockHash<I>,
-    block_size: u64,
-    offered_fee: u64,
-    _phantom: PhantomData<I>,
+    pub block_hash: BuilderCommitment,
+    pub block_size: u64,
+    pub offered_fee: u64,
+    pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
+    pub _phantom: PhantomData<I>,
+    pub sender: <I as NodeType>::SignatureKey,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
+#[serde(bound = "")]
+pub struct Blockdata<I: NodeType> {
+    pub block_payload: <I as NodeType>::BlockPayload,
+    pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
+    pub _phantom: PhantomData<I>,
+    pub sender: <I as NodeType>::SignatureKey,
 }

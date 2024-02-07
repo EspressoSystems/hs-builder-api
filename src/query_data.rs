@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::block_metadata::BlockMetadata;
 
-#[derive(Clone, Debug, Default, Deserialize, Serialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Debug, Default, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
 pub struct AvailableBlocksQueryData<I: NodeType> {
     pub blocks: Vec<BlockMetadata<I>>,

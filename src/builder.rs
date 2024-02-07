@@ -3,7 +3,7 @@ use std::{fmt::Display, path::PathBuf};
 use clap::Args;
 use derive_more::From;
 use futures::FutureExt;
-use hotshot_types::traits::{node_implementation::NodeType, signature_key::SignatureKey};
+use hotshot_types::{traits::{node_implementation::NodeType, signature_key::SignatureKey}, utils::BuilderCommitment};
 use serde::{Deserialize, Serialize};
 use snafu::{ResultExt, Snafu};
 use tagged_base64::TaggedBase64;
@@ -95,7 +95,7 @@ where
         })?
         .get("claim_block", |req, state| {
             async move {
-                let hash = req.blob_param("block_hash")?;
+                let hash:BuilderCommitment = req.blob_param("block_hash")?;
                 let signature = req.blob_param("signature")?;
                 state
                     .claim_block(&hash, &signature)

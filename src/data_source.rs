@@ -2,11 +2,12 @@ use async_trait::async_trait;
 use hotshot_types::{
     data::VidCommitment,
     traits::{node_implementation::NodeType, signature_key::SignatureKey},
+    utils::BuilderCommitment
 };
 use tagged_base64::TaggedBase64;
 
 use crate::{
-    block_metadata::{BlockHash, BlockMetadata},
+    block_metadata::{BlockMetadata, Blockdata},
     builder::BuildError,
 };
 
@@ -23,8 +24,8 @@ where
     ) -> Result<Vec<BlockMetadata<I>>, BuildError>;
     async fn claim_block(
         &self,
-        block_hash: &BlockHash<I>,
+        block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
-    ) -> Result<I::BlockPayload, BuildError>;
+    ) -> Result<Blockdata<I>, BuildError>;
     async fn submit_txn(&self, txn: <I as NodeType>::Transaction) -> Result<(), BuildError>;
 }
