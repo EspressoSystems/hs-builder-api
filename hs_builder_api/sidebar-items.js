@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["block_metadata","builder","data_source","query_data"]};
+window.SIDEBAR_ITEMS = {"mod":["block_info","builder","data_source","query_data"]};
