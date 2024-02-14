@@ -2,12 +2,12 @@ use async_trait::async_trait;
 use hotshot_types::{
     data::VidCommitment,
     traits::{node_implementation::NodeType, signature_key::SignatureKey},
-    utils::BuilderCommitment
+    utils::BuilderCommitment,
 };
 use tagged_base64::TaggedBase64;
 
 use crate::{
-    block_info::{AvailableBlockInfo, AvailableBlockData},
+    block_info::{AvailableBlockData, AvailableBlockInfo},
     builder::BuildError,
 };
 

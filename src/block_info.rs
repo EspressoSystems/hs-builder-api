@@ -2,8 +2,8 @@ use std::{hash::Hash, marker::PhantomData};
 
 use commit::{Commitment, Committable};
 use hotshot_types::{
-    traits::{node_implementation::NodeType, BlockPayload, signature_key::SignatureKey},
-    utils::BuilderCommitment
+    traits::{node_implementation::NodeType, signature_key::SignatureKey, BlockPayload},
+    utils::BuilderCommitment,
 };
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
