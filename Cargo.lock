@@ -2664,7 +2664,7 @@ dependencies = [
 [[package]]
 name = "hotshot-constants"
 version = "0.3.3"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.13#e4b699c49a86246145838012e15ffafdfec61ef1"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.14#696de65a40c42accc589a368cbbe218bdec90aa3"
 dependencies = [
  "serde",
 ]
@@ -2672,7 +2672,7 @@ dependencies = [
 [[package]]
 name = "hotshot-types"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.13#e4b699c49a86246145838012e15ffafdfec61ef1"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.14#696de65a40c42accc589a368cbbe218bdec90aa3"
 dependencies = [
  "ark-bls12-381",
  "ark-ed-on-bn254",
@@ -2717,7 +2717,7 @@ dependencies = [
 [[package]]
 name = "hotshot-utils"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.13#e4b699c49a86246145838012e15ffafdfec61ef1"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.14#696de65a40c42accc589a368cbbe218bdec90aa3"
 dependencies = [
  "bincode",
  "hotshot-constants",
@@ -3648,7 +3648,7 @@ dependencies = [
 [[package]]
 name = "libp2p-networking"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.13#e4b699c49a86246145838012e15ffafdfec61ef1"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.14#696de65a40c42accc589a368cbbe218bdec90aa3"
 dependencies = [
  "async-compatibility-layer",
  "async-lock 2.8.0",
@@ -3674,7 +3674,6 @@ dependencies = [
  "tokio",
  "tokio-stream",
  "tracing",
- "unsigned-varint 0.7.2",
  "void",
 ]
 
