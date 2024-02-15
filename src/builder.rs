@@ -67,6 +67,28 @@ pub enum Error {
     },
 }
 
+impl tide_disco::error::Error for Error {
+    fn catch_all(status: StatusCode, msg: String) -> Self {
+        Error::Custom {
+            message: msg,
+            status,
+        }
+    }
+
+    fn status(&self) -> StatusCode {
+        match self {
+            Error::Request { .. } => StatusCode::BadRequest,
+            Error::BlockAvailable { source, .. } | Error::BlockClaim { source, .. } => match source
+            {
+                BuildError::NotFound => StatusCode::NotFound,
+                BuildError::Missing => StatusCode::NotFound,
+                BuildError::Error { .. } => StatusCode::InternalServerError,
+            },
+            Error::Custom { .. } => StatusCode::InternalServerError,
+        }
+    }
+}
+
 pub fn define_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
 where
     State: 'static + Send + Sync + ReadState,
