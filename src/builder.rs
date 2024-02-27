@@ -10,9 +10,16 @@ use hotshot_types::{
 use serde::{Deserialize, Serialize};
 use snafu::{ResultExt, Snafu};
 use tagged_base64::TaggedBase64;
-use tide_disco::{api::ApiError, method::ReadState, Api, RequestError, StatusCode};
+use tide_disco::{
+    api::ApiError,
+    method::{ReadState, WriteState},
+    Api, RequestError, StatusCode,
+};
 
-use crate::{api::load_api, data_source::BuilderDataSource};
+use crate::{
+    api::load_api,
+    data_source::{AcceptsTxnSubmits, BuilderDataSource},
+};
 
 #[derive(Args, Default)]
 pub struct Options {
@@ -61,6 +68,16 @@ pub enum Error {
         source: BuildError,
         resource: String,
     },
+    #[snafu(display("error unpacking transaction: {source}"))]
+    #[from(ignore)]
+    TxnUnpack {
+        source: RequestError,
+    },
+    #[snafu(display("error submitting transaction: {source}"))]
+    #[from(ignore)]
+    TxnSubmit {
+        source: BuildError,
+    },
     Custom {
         message: String,
         status: StatusCode,
@@ -84,6 +101,8 @@ impl tide_disco::error::Error for Error {
                 BuildError::Missing => StatusCode::NotFound,
                 BuildError::Error { .. } => StatusCode::InternalServerError,
             },
+            Error::TxnUnpack { .. } => StatusCode::BadRequest,
+            Error::TxnSubmit { .. } => StatusCode::InternalServerError,
             Error::Custom { .. } => StatusCode::InternalServerError,
         }
     }
@@ -128,6 +147,44 @@ where
                     .context(BlockClaimSnafu {
                         resource: hash.to_string(),
                     })
+            }
+            .boxed()
+        })?
+        .get("claim_header", |req, state| {
+            async move {
+                let hash: BuilderCommitment = req.blob_param("block_hash")?;
+                let signature = req.blob_param("signature")?;
+                state
+                    .claim_block_header(&hash, &signature)
+                    .await
+                    .context(BlockClaimSnafu {
+                        resource: hash.to_string(),
+                    })
+            }
+            .boxed()
+        })?;
+    Ok(api)
+}
+
+pub fn submit_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
+where
+    State: 'static + Send + Sync + WriteState,
+    <State as ReadState>::State: Send + Sync + AcceptsTxnSubmits<Types>,
+    Types: NodeType,
+{
+    let mut api = load_api::<State, Error>(
+        options.api_path.as_ref(),
+        include_str!("../api/submit.toml"),
+        options.extensions.clone(),
+    )?;
+    api.with_version("0.0.1".parse().unwrap())
+        .post("submit_txn", |req, state| {
+            async move {
+                let tx = req
+                    .body_auto::<<Types as NodeType>::Transaction>()
+                    .context(TxnUnpackSnafu)?;
+                state.submit_txn(tx).await.context(TxnSubmitSnafu)?;
+                Ok(())
             }
             .boxed()
         })?;

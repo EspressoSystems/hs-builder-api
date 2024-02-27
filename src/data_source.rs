@@ -7,7 +7,7 @@ use hotshot_types::{
 use tagged_base64::TaggedBase64;
 
 use crate::{
-    block_info::{AvailableBlockData, AvailableBlockInfo},
+    block_info::{AvailableBlockData, AvailableBlockHeader, AvailableBlockInfo},
     builder::BuildError,
 };
 
@@ -27,5 +27,17 @@ where
         block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
     ) -> Result<AvailableBlockData<I>, BuildError>;
-    async fn submit_txn(&self, txn: <I as NodeType>::Transaction) -> Result<(), BuildError>;
+    async fn claim_block_header(
+        &self,
+        block_hash: &BuilderCommitment,
+        signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
+    ) -> Result<AvailableBlockHeader<I>, BuildError>;
+}
+
+#[async_trait]
+pub trait AcceptsTxnSubmits<I>
+where
+    I: NodeType,
+{
+    async fn submit_txn(&mut self, txn: <I as NodeType>::Transaction) -> Result<(), BuildError>;
 }
