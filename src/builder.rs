@@ -168,13 +168,15 @@ where
     Ok(api)
 }
 
-pub fn submit_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
+pub fn submit_api<State, Types: NodeType, const MAJOR: u16, const MINOR: u16>(
+    options: &Options,
+) -> Result<Api<State, Error, MAJOR, MINOR>, ApiError>
 where
     State: 'static + Send + Sync + WriteState,
     <State as ReadState>::State: Send + Sync + AcceptsTxnSubmits<Types>,
     Types: NodeType,
 {
-    let mut api = load_api::<State, Error>(
+    let mut api = load_api::<State, Error, MAJOR, MINOR>(
         options.api_path.as_ref(),
         include_str!("../api/submit.toml"),
         options.extensions.clone(),
@@ -183,7 +185,7 @@ where
         .post("submit_txn", |req, state| {
             async move {
                 let tx = req
-                    .body_auto::<<Types as NodeType>::Transaction>()
+                    .body_auto::<<Types as NodeType>::Transaction, MAJOR, MINOR>()
                     .context(TxnUnpackSnafu)?;
                 state.submit_txn(tx).await.context(TxnSubmitSnafu)?;
                 Ok(())
