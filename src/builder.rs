@@ -89,7 +89,9 @@ impl tide_disco::error::Error for Error {
     }
 }
 
-pub fn define_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
+pub fn define_api<State, Types: NodeType, const MAJOR: u16, const MINOR: u16>(
+    options: &Options,
+) -> Result<Api<State, Error, MAJOR, MINOR>, ApiError>
 where
     State: 'static + Send + Sync + ReadState,
     <State as ReadState>::State: Send + Sync + BuilderDataSource<Types>,
@@ -100,7 +102,7 @@ where
         &'a TaggedBase64,
     >>::Error: Display,
 {
-    let mut api = load_api::<State, Error>(
+    let mut api = load_api::<State, Error, MAJOR, MINOR>(
         options.api_path.as_ref(),
         include_str!("../api/builder.toml"),
         options.extensions.clone(),

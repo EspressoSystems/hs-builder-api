@@ -6239,11 +6239,11 @@ dependencies = [
 [[package]]
 name = "tide-disco"
 version = "0.4.6"
-source = "git+https://github.com/EspressoSystems/tide-disco.git?tag=v0.4.6#4ced31cef8aae769994098d245e026c127801b74"
+source = "git+https://github.com/EspressoSystems/tide-disco.git?branch=adding_vbs_support#7173ae0db08f37e5b9ca84c8004f4f15195cbbf8"
 dependencies = [
+ "anyhow",
  "async-std",
  "async-trait",
- "bincode",
  "clap",
  "config",
  "derivative",
@@ -6284,6 +6284,7 @@ dependencies = [
  "tracing-log",
  "tracing-subscriber",
  "url",
+ "versioned-binary-serialization",
 ]
 
 [[package]]
@@ -6895,6 +6896,18 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
+
+[[package]]
+name = "versioned-binary-serialization"
+version = "0.1.0"
+source = "git+https://github.com/EspressoSystems/versioned-binary-serialization.git?branch=main#4e4695bf0b77ab43700bf625fd4489151f189527"
+dependencies = [
+ "anyhow",
+ "bincode",
+ "displaydoc",
+ "serde",
+ "serde_with",
+]
 
 [[package]]
 name = "void"
