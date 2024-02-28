@@ -21,45 +21,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 [meta]
-NAME = "hs-builder-get"
+NAME = "hs-builder-submit"
 DESCRIPTION = ""
 FORMAT_VERSION = "0.1.0"
 
-[route.available_blocks]
-PATH = ["availableblocks/:parent_hash"]
-":parent_hash" = "TaggedBase64"
-DOC = """
-Get descriptions for all block candidates based on a specific parent block.
-
-Returns
-```
-[
-    "block_metadata": {
-        "block_hash":  TaggedBase64,
-        "block_size":  integer,
-        "offered_fee": integer,
-    },
-]
-```
-"""
-
-[route.claim_block]
-PATH = ["claimblock/:block_hash/:signature"]
-":block_hash" = "TaggedBase64"
-":signature" = "TaggedBase64"
-DOC = """
-Get the specified block candidate.
-
-Returns application-specific encoded transactions type
-"""
-
-[route.claim_header]
-PATH = ["claimheader/:block_hash/:signature"]
-":block_hash" = "TaggedBase64"
-":signature" = "TaggedBase64"
-DOC = """
-Get the specified block candidate.
-
-Returns application-specific block header type
-"""
+[route.submit_txn]
+PATH = ["/submit"]
+METHOD = "POST"
+DOC = "Submit a transaction to builder's private mempool."
