@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["BuilderDataSource"]};
+window.SIDEBAR_ITEMS = {"trait":["AcceptsTxnSubmits","BuilderDataSource"]};
