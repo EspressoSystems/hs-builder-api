@@ -25,3 +25,12 @@ pub struct AvailableBlockData<I: NodeType> {
     pub sender: <I as NodeType>::SignatureKey,
     pub _phantom: PhantomData<I>,
 }
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
+#[serde(bound = "")]
+pub struct AvailableBlockHeader<I: NodeType> {
+    pub block_header: <I as NodeType>::BlockHeader,
+    pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
+    pub sender: <I as NodeType>::SignatureKey,
+    pub _phantom: PhantomData<I>,
+}
