@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 use hotshot_types::{
-    data::VidCommitment,
     traits::{node_implementation::NodeType, signature_key::SignatureKey},
     utils::BuilderCommitment,
+    vid::VidCommitment,
 };
 use tagged_base64::TaggedBase64;
 
