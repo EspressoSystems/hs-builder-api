@@ -35,10 +35,13 @@
 <a href="#34" id="34">34</a>
 <a href="#35" id="35">35</a>
 <a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::{hash::Hash, marker::PhantomData};
 
 <span class="kw">use </span>hotshot_types::{
-    traits::{node_implementation::NodeType, signature_key::SignatureKey},
+    data::{VidScheme, VidSchemeTrait},
+    traits::{node_implementation::NodeType, signature_key::SignatureKey, BlockPayload},
     utils::BuilderCommitment,
 };
 <span class="kw">use </span>serde::{Deserialize, Serialize};
@@ -58,6 +61,7 @@
 #[serde(bound = <span class="string">""</span>)]
 </span><span class="kw">pub struct </span>AvailableBlockData&lt;I: NodeType&gt; {
     <span class="kw">pub </span>block_payload: &lt;I <span class="kw">as </span>NodeType&gt;::BlockPayload,
+    <span class="kw">pub </span>metadata: &lt;&lt;I <span class="kw">as </span>NodeType&gt;::BlockPayload <span class="kw">as </span>BlockPayload&gt;::Metadata,
     <span class="kw">pub </span>signature: &lt;&lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey <span class="kw">as </span>SignatureKey&gt;::PureAssembledSignatureType,
     <span class="kw">pub </span>sender: &lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey,
     <span class="kw">pub </span>_phantom: PhantomData&lt;I&gt;,
@@ -65,8 +69,8 @@
 
 <span class="attr">#[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = <span class="string">""</span>)]
-</span><span class="kw">pub struct </span>AvailableBlockHeader&lt;I: NodeType&gt; {
-    <span class="kw">pub </span>block_header: &lt;I <span class="kw">as </span>NodeType&gt;::BlockHeader,
+</span><span class="kw">pub struct </span>AvailableBlockHeaderInput&lt;I: NodeType&gt; {
+    <span class="kw">pub </span>vid_commitment: &lt;VidScheme <span class="kw">as </span>VidSchemeTrait&gt;::Commit,
     <span class="kw">pub </span>signature: &lt;&lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey <span class="kw">as </span>SignatureKey&gt;::PureAssembledSignatureType,
     <span class="kw">pub </span>sender: &lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey,
     <span class="kw">pub </span>_phantom: PhantomData&lt;I&gt;,

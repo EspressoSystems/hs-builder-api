@@ -51,7 +51,7 @@
 <span class="kw">use </span>tagged_base64::TaggedBase64;
 
 <span class="kw">use crate</span>::{
-    block_info::{AvailableBlockData, AvailableBlockHeader, AvailableBlockInfo},
+    block_info::{AvailableBlockData, AvailableBlockHeaderInput, AvailableBlockInfo},
     builder::BuildError,
 };
 
@@ -71,11 +71,11 @@
         block_hash: <span class="kw-2">&amp;</span>BuilderCommitment,
         signature: <span class="kw-2">&amp;</span>&lt;&lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey <span class="kw">as </span>SignatureKey&gt;::PureAssembledSignatureType,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;AvailableBlockData&lt;I&gt;, BuildError&gt;;
-    <span class="kw">async fn </span>claim_block_header(
+    <span class="kw">async fn </span>claim_block_header_input(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         block_hash: <span class="kw-2">&amp;</span>BuilderCommitment,
         signature: <span class="kw-2">&amp;</span>&lt;&lt;I <span class="kw">as </span>NodeType&gt;::SignatureKey <span class="kw">as </span>SignatureKey&gt;::PureAssembledSignatureType,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;AvailableBlockHeader&lt;I&gt;, BuildError&gt;;
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AvailableBlockHeaderInput&lt;I&gt;, BuildError&gt;;
 }
 
 <span class="attr">#[async_trait]

@@ -343,12 +343,12 @@
             }
             .boxed()
         })<span class="question-mark">?
-        </span>.get(<span class="string">"claim_header"</span>, |req, state| {
+        </span>.get(<span class="string">"claim_header_input"</span>, |req, state| {
             <span class="kw">async move </span>{
                 <span class="kw">let </span>hash: BuilderCommitment = req.blob_param(<span class="string">"block_hash"</span>)<span class="question-mark">?</span>;
                 <span class="kw">let </span>signature = req.blob_param(<span class="string">"signature"</span>)<span class="question-mark">?</span>;
                 state
-                    .claim_block_header(<span class="kw-2">&amp;</span>hash, <span class="kw-2">&amp;</span>signature)
+                    .claim_block_header_input(<span class="kw-2">&amp;</span>hash, <span class="kw-2">&amp;</span>signature)
                     .<span class="kw">await
                     </span>.context(BlockClaimSnafu {
                         resource: hash.to_string(),
