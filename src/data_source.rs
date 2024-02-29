@@ -27,7 +27,7 @@ where
         block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
     ) -> Result<AvailableBlockData<I>, BuildError>;
-    async fn claim_block_header(
+    async fn claim_block_header_input(
         &self,
         block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
