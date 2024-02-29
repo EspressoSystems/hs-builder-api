@@ -7,7 +7,7 @@ use hotshot_types::{
 use tagged_base64::TaggedBase64;
 
 use crate::{
-    block_info::{AvailableBlockData, AvailableBlockHeader, AvailableBlockInfo},
+    block_info::{AvailableBlockData, AvailableBlockHeaderInput, AvailableBlockInfo},
     builder::BuildError,
 };
 
@@ -31,7 +31,7 @@ where
         &self,
         block_hash: &BuilderCommitment,
         signature: &<<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
-    ) -> Result<AvailableBlockHeader<I>, BuildError>;
+    ) -> Result<AvailableBlockHeaderInput<I>, BuildError>;
 }
 
 #[async_trait]

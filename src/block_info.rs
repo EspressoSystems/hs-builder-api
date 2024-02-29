@@ -30,7 +30,7 @@ pub struct AvailableBlockData<I: NodeType> {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
-pub struct AvailableBlockHeader<I: NodeType> {
+pub struct AvailableBlockHeaderInput<I: NodeType> {
     pub vid_commitment: <VidScheme as VidSchemeTrait>::Commit,
     pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
     pub sender: <I as NodeType>::SignatureKey,
