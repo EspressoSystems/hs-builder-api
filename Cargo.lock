@@ -2666,7 +2666,7 @@ dependencies = [
 [[package]]
 name = "hotshot-constants"
 version = "0.3.3"
-source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#cb63b1b2779a3c509f24a4af782575eea3edbaff"
+source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#719a409c3b43628a0ee6c3d5c3666548fe8ff02c"
 dependencies = [
  "serde",
  "versioned-binary-serialization",
@@ -2675,10 +2675,11 @@ dependencies = [
 [[package]]
 name = "hotshot-types"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#cb63b1b2779a3c509f24a4af782575eea3edbaff"
+source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#719a409c3b43628a0ee6c3d5c3666548fe8ff02c"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
+ "ark-ec",
  "ark-ed-on-bn254",
  "ark-ff",
  "ark-serialize",
@@ -2705,6 +2706,7 @@ dependencies = [
  "jf-plonk",
  "jf-primitives",
  "jf-utils",
+ "lazy_static",
  "libp2p-networking",
  "rand 0.8.5",
  "rand_chacha 0.3.1",
@@ -2722,7 +2724,7 @@ dependencies = [
 [[package]]
 name = "hotshot-utils"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#cb63b1b2779a3c509f24a4af782575eea3edbaff"
+source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#719a409c3b43628a0ee6c3d5c3666548fe8ff02c"
 dependencies = [
  "bincode",
  "hotshot-constants",
@@ -3653,7 +3655,7 @@ dependencies = [
 [[package]]
 name = "libp2p-networking"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#cb63b1b2779a3c509f24a4af782575eea3edbaff"
+source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#719a409c3b43628a0ee6c3d5c3666548fe8ff02c"
 dependencies = [
  "anyhow",
  "async-compatibility-layer",
