@@ -152,12 +152,12 @@ where
             }
             .boxed()
         })?
-        .get("claim_header", |req, state| {
+        .get("claim_header_input", |req, state| {
             async move {
                 let hash: BuilderCommitment = req.blob_param("block_hash")?;
                 let signature = req.blob_param("signature")?;
                 state
-                    .claim_block_header(&hash, &signature)
+                    .claim_block_header_input(&hash, &signature)
                     .await
                     .context(BlockClaimSnafu {
                         resource: hash.to_string(),

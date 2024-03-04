@@ -54,8 +54,8 @@ Get the specified block candidate.
 Returns application-specific encoded transactions type
 """
 
-[route.claim_header]
-PATH = ["claimheader/:block_hash/:signature"]
+[route.claim_header_input]
+PATH = ["claimheaderinput/:block_hash/:signature"]
 ":block_hash" = "TaggedBase64"
 ":signature" = "TaggedBase64"
 DOC = """

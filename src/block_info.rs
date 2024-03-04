@@ -1,8 +1,9 @@
 use std::{hash::Hash, marker::PhantomData};
 
 use hotshot_types::{
-    traits::{node_implementation::NodeType, signature_key::SignatureKey},
+    traits::{node_implementation::NodeType, signature_key::SignatureKey, BlockPayload},
     utils::BuilderCommitment,
+    vid::VidCommitment,
 };
 use serde::{Deserialize, Serialize};
 
@@ -21,6 +22,7 @@ pub struct AvailableBlockInfo<I: NodeType> {
 #[serde(bound = "")]
 pub struct AvailableBlockData<I: NodeType> {
     pub block_payload: <I as NodeType>::BlockPayload,
+    pub metadata: <<I as NodeType>::BlockPayload as BlockPayload>::Metadata,
     pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
     pub sender: <I as NodeType>::SignatureKey,
     pub _phantom: PhantomData<I>,
@@ -28,8 +30,8 @@ pub struct AvailableBlockData<I: NodeType> {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq, Hash)]
 #[serde(bound = "")]
-pub struct AvailableBlockHeader<I: NodeType> {
-    pub block_header: <I as NodeType>::BlockHeader,
+pub struct AvailableBlockHeaderInput<I: NodeType> {
+    pub vid_commitment: VidCommitment,
     pub signature: <<I as NodeType>::SignatureKey as SignatureKey>::PureAssembledSignatureType,
     pub sender: <I as NodeType>::SignatureKey,
     pub _phantom: PhantomData<I>,
