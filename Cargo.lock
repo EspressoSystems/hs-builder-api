@@ -2724,11 +2724,7 @@ dependencies = [
 [[package]]
 name = "hotshot-utils"
 version = "0.1.0"
-<<<<<<< HEAD
 source = "git+https://github.com/EspressoSystems/HotShot.git?branch=adding_vbs_support#719a409c3b43628a0ee6c3d5c3666548fe8ff02c"
-=======
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.20#eeaf829a258c317da0946858b6abb57498493674"
->>>>>>> main
 dependencies = [
  "bincode",
  "hotshot-constants",
