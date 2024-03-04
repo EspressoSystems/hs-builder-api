@@ -2666,7 +2666,7 @@ dependencies = [
 [[package]]
 name = "hotshot-constants"
 version = "0.3.3"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.20#eeaf829a258c317da0946858b6abb57498493674"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.21#eba2d0ec9dd27e555febbb42acad3fe24b9b5f3c"
 dependencies = [
  "serde",
 ]
@@ -2674,7 +2674,7 @@ dependencies = [
 [[package]]
 name = "hotshot-types"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.20#eeaf829a258c317da0946858b6abb57498493674"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.21#eba2d0ec9dd27e555febbb42acad3fe24b9b5f3c"
 dependencies = [
  "ark-bls12-381",
  "ark-ec",
@@ -2721,7 +2721,7 @@ dependencies = [
 [[package]]
 name = "hotshot-utils"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.20#eeaf829a258c317da0946858b6abb57498493674"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.21#eba2d0ec9dd27e555febbb42acad3fe24b9b5f3c"
 dependencies = [
  "bincode",
  "hotshot-constants",
@@ -3652,7 +3652,7 @@ dependencies = [
 [[package]]
 name = "libp2p-networking"
 version = "0.1.0"
-source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.20#eeaf829a258c317da0946858b6abb57498493674"
+source = "git+https://github.com/EspressoSystems/HotShot.git?tag=0.5.21#eba2d0ec9dd27e555febbb42acad3fe24b9b5f3c"
 dependencies = [
  "async-compatibility-layer",
  "async-lock 2.8.0",
