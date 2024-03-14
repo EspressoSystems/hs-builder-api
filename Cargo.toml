@@ -10,9 +10,10 @@ async-trait = "0.1"
 clap = { version = "4.4", features = ["derive", "env"] }
 derive_more = "0.99"
 futures = "0.3"
-hotshot-types = { git = "https://github.com/EspressoSystems/HotShot.git", branch = "adding_vbs_support" }
+hotshot-types = { git = "https://github.com/EspressoSystems/hotshot-types.git", branch = "adding_vbs_support" }
 serde = { version = "1.0", features = ["derive"] }
 snafu = { version = "0.7", features = ["backtraces"] }
 tagged-base64 = { git = "https://github.com/EspressoSystems/tagged-base64", tag = "0.3.4" }
-tide-disco = { git = "https://github.com/EspressoSystems/tide-disco.git", tag = "v0.4.7" }
+tide-disco = { git = "https://github.com/EspressoSystems/tide-disco.git", branch = "nfy/transition_away_from_const_generics" }
 toml = "0.8"
+versioned-binary-serialization = { git = "https://github.com/EspressoSystems/versioned-binary-serialization.git", tag = "0.1.2" }
