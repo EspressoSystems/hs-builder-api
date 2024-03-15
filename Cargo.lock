@@ -4366,7 +4366,7 @@ dependencies = [
 [[package]]
 name = "tide-disco"
 version = "0.4.8"
-source = "git+https://github.com/EspressoSystems/tide-disco.git?branch=nfy/transition_away_from_const_generics#58a8cc5c59978573d31cb6b78cb248ed25befa1d"
+source = "git+https://github.com/EspressoSystems/tide-disco.git?tag=v0.4.8#d0d2bfb8de1fcee6c28362c768efd6a2928d7b56"
 dependencies = [
  "anyhow",
  "async-std",
