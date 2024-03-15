@@ -1105,7 +1105,7 @@ checksum = "acbf1af155f9b9ef647e42cdc158db4b64a1b61f743629225fde6f3e0be2a7c7"
 [[package]]
 name = "commit"
 version = "0.2.2"
-source = "git+https://github.com/EspressoSystems/commit.git#dd9f16e084d45e9ea52459c776f5fdcb6b000889"
+source = "git+https://github.com/EspressoSystems/commit.git#30679718efd4ecf870b66950160077125dcb8d93"
 dependencies = [
  "arbitrary",
  "ark-serialize",
@@ -2110,7 +2110,7 @@ dependencies = [
 [[package]]
 name = "hotshot-types"
 version = "0.1.7"
-source = "git+https://github.com/EspressoSystems/hotshot-types.git?tag=0.1.7#84c447d80b34a73e2d8c58570de9f093a064c9ae"
+source = "git+https://github.com/EspressoSystems/hotshot-types.git?tag=0.1.7#0dadf7d13cd80598ab725abb7629ec9d6ec943e6"
 dependencies = [
  "ark-bn254",
  "ark-ec",
@@ -2518,7 +2518,7 @@ checksum = "b1a46d1a171d865aa5f83f92695765caa047a9b4cbae2cbf37dbd613a793fd4c"
 [[package]]
 name = "jf-plonk"
 version = "0.4.0-pre.0"
-source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#39aa65e52347daa7ded14c00ef3cb4005b319d98"
+source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#f85f9024ef42ab8be95b2c81bd15fd6cbadeafbf"
 dependencies = [
  "ark-ec",
  "ark-ff",
@@ -2547,7 +2547,7 @@ dependencies = [
 [[package]]
 name = "jf-primitives"
 version = "0.4.0-pre.0"
-source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#39aa65e52347daa7ded14c00ef3cb4005b319d98"
+source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#f85f9024ef42ab8be95b2c81bd15fd6cbadeafbf"
 dependencies = [
  "anyhow",
  "ark-bls12-377",
@@ -2592,7 +2592,7 @@ dependencies = [
 [[package]]
 name = "jf-relation"
 version = "0.4.0-pre.0"
-source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#39aa65e52347daa7ded14c00ef3cb4005b319d98"
+source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#f85f9024ef42ab8be95b2c81bd15fd6cbadeafbf"
 dependencies = [
  "ark-bls12-377",
  "ark-bls12-381",
@@ -2618,7 +2618,7 @@ dependencies = [
 [[package]]
 name = "jf-utils"
 version = "0.4.0-pre.0"
-source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#39aa65e52347daa7ded14c00ef3cb4005b319d98"
+source = "git+https://github.com/EspressoSystems/jellyfish?tag=0.4.2#f85f9024ef42ab8be95b2c81bd15fd6cbadeafbf"
 dependencies = [
  "ark-ec",
  "ark-ff",
