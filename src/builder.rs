@@ -15,6 +15,7 @@ use tide_disco::{
     method::{ReadState, WriteState},
     Api, RequestError, StatusCode,
 };
+use versioned_binary_serialization::version::StaticVersionType;
 
 use crate::{
     api::load_api,
@@ -108,7 +109,9 @@ impl tide_disco::error::Error for Error {
     }
 }
 
-pub fn define_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
+pub fn define_api<State, Types: NodeType, Ver: StaticVersionType + 'static>(
+    options: &Options,
+) -> Result<Api<State, Error, Ver>, ApiError>
 where
     State: 'static + Send + Sync + ReadState,
     <State as ReadState>::State: Send + Sync + BuilderDataSource<Types>,
@@ -119,7 +122,7 @@ where
         &'a TaggedBase64,
     >>::Error: Display,
 {
-    let mut api = load_api::<State, Error>(
+    let mut api = load_api::<State, Error, Ver>(
         options.api_path.as_ref(),
         include_str!("../api/builder.toml"),
         options.extensions.clone(),
@@ -166,13 +169,15 @@ where
     Ok(api)
 }
 
-pub fn submit_api<State, Types: NodeType>(options: &Options) -> Result<Api<State, Error>, ApiError>
+pub fn submit_api<State, Types: NodeType, Ver: StaticVersionType + 'static>(
+    options: &Options,
+) -> Result<Api<State, Error, Ver>, ApiError>
 where
     State: 'static + Send + Sync + WriteState,
     <State as ReadState>::State: Send + Sync + AcceptsTxnSubmits<Types>,
     Types: NodeType,
 {
-    let mut api = load_api::<State, Error>(
+    let mut api = load_api::<State, Error, Ver>(
         options.api_path.as_ref(),
         include_str!("../api/submit.toml"),
         options.extensions.clone(),
@@ -181,7 +186,7 @@ where
         .post("submit_txn", |req, state| {
             async move {
                 let tx = req
-                    .body_auto::<<Types as NodeType>::Transaction>()
+                    .body_auto::<<Types as NodeType>::Transaction, Ver>(Ver::instance())
                     .context(TxnUnpackSnafu)?;
                 state.submit_txn(tx).await.context(TxnSubmitSnafu)?;
                 Ok(())
