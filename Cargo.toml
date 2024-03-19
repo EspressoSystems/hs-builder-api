@@ -1,6 +1,6 @@
 [package]
 name = "hs-builder-api"
-version = "0.1.2"
+version = "0.1.6"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -10,9 +10,10 @@ async-trait = "0.1"
 clap = { version = "4.4", features = ["derive", "env"] }
 derive_more = "0.99"
 futures = "0.3"
-hotshot-types = { git = "https://github.com/EspressoSystems/hotshot-types", branch = "lr/vid-share-dms" }
+hotshot-types = { git = "https://github.com/EspressoSystems/hotshot-types", tag = "0.1.11" }
 serde = { version = "1.0", features = ["derive"] }
-snafu = { version = "0.7", features = ["backtraces"] }
+snafu = "0.8"
 tagged-base64 = { git = "https://github.com/EspressoSystems/tagged-base64", tag = "0.3.4" }
-tide-disco = { git = "https://github.com/EspressoSystems/tide-disco.git", tag = "v0.4.6" }
+tide-disco = { git = "https://github.com/EspressoSystems/tide-disco.git", tag = "v0.5.0" }
 toml = "0.8"
+versioned-binary-serialization = { git = "https://github.com/EspressoSystems/versioned-binary-serialization.git", tag = "0.1.2" }
