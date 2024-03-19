@@ -1415,21 +1415,24 @@ dependencies = [
 
 [[package]]
 name = "custom_debug"
-version = "0.5.1"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e89e0ae2c2a42be29595d05c50e3ce6096c0698a97e021c3289790f0750cc8e2"
+checksum = "14e715bf0e503e909c7076c052e39dd215202e8edeb32f1c194fd630c314d256"
 dependencies = [
  "custom_debug_derive",
 ]
 
 [[package]]
 name = "custom_debug_derive"
-version = "0.5.1"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08a9f3941234c9f62ceaa2782974827749de9b0a8a6487275a278da068e1baf7"
+checksum = "f731440b39c73910e253cb465ec1fac97732b3c7af215639881ec0c2a38f4f69"
 dependencies = [
+ "darling",
+ "itertools 0.12.1",
  "proc-macro2",
- "syn 1.0.109",
+ "quote",
+ "syn 2.0.53",
  "synstructure",
 ]
 
@@ -2134,8 +2137,8 @@ dependencies = [
 
 [[package]]
 name = "hotshot-types"
-version = "0.1.7"
-source = "git+https://github.com/EspressoSystems/hotshot-types.git?branch=adding_vbs_support#6ce0afaa6b8eaa25e462da2a5754e0a0daf6ee34"
+version = "0.1.11"
+source = "git+https://github.com/EspressoSystems/hotshot-types?tag=0.1.11#65a06f75612f529c11e97c4320f1f6d0f49ba81e"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
@@ -2171,7 +2174,7 @@ dependencies = [
  "rand_chacha 0.3.1",
  "serde",
  "sha2 0.10.8",
- "snafu 0.7.5",
+ "snafu 0.8.2",
  "tagged-base64",
  "time 0.3.34",
  "tokio",
@@ -2182,7 +2185,7 @@ dependencies = [
 
 [[package]]
 name = "hs-builder-api"
-version = "0.1.4"
+version = "0.1.6"
 dependencies = [
  "async-trait",
  "clap",
@@ -4309,14 +4312,13 @@ checksum = "2047c6ded9c721764247e62cd3b03c09ffc529b2ba5b10ec482ae507a4a70160"
 
 [[package]]
 name = "synstructure"
-version = "0.12.6"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f36bdaa60a83aca3921b5259d5400cbf5e90fc51931376a9bd4a0eb79aa7210f"
+checksum = "c8af7666ab7b6390ab78131fb5b0fce11d6b7a6951602017c35fa82800708971"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 1.0.109",
- "unicode-xid",
+ "syn 2.0.53",
 ]
 
 [[package]]
@@ -4934,12 +4936,6 @@ name = "unicode-segmentation"
 version = "1.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d4c87d22b6e3f4a18d4d40ef354e97c90fcb14dd91d7dc0aa9d8a1172ebf7202"
-
-[[package]]
-name = "unicode-xid"
-version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f962df74c8c05a667b5ee8bcf162993134c104e96440b663c8daa176dc772d8c"
 
 [[package]]
 name = "universal-hash"
