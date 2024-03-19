@@ -2138,7 +2138,7 @@ dependencies = [
 [[package]]
 name = "hotshot-types"
 version = "0.1.11"
-source = "git+https://github.com/EspressoSystems/hotshot-types?tag=0.1.11#65a06f75612f529c11e97c4320f1f6d0f49ba81e"
+source = "git+https://github.com/EspressoSystems/hotshot-types?branch=lr/vid-share-dms#3f550029830bdafa9ce925f6a1ad459c1b183641"
 dependencies = [
  "anyhow",
  "ark-bls12-381",
