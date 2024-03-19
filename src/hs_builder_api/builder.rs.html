@@ -191,6 +191,11 @@
 <a href="#190" id="190">190</a>
 <a href="#191" id="191">191</a>
 <a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a>
+<a href="#194" id="194">194</a>
+<a href="#195" id="195">195</a>
+<a href="#196" id="196">196</a>
+<a href="#197" id="197">197</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::{fmt::Display, path::PathBuf};
 
 <span class="kw">use </span>clap::Args;
@@ -208,6 +213,7 @@
     method::{ReadState, WriteState},
     Api, RequestError, StatusCode,
 };
+<span class="kw">use </span>versioned_binary_serialization::version::StaticVersionType;
 
 <span class="kw">use crate</span>::{
     api::load_api,
@@ -301,7 +307,9 @@
     }
 }
 
-<span class="kw">pub fn </span>define_api&lt;State, Types: NodeType&gt;(options: <span class="kw-2">&amp;</span>Options) -&gt; <span class="prelude-ty">Result</span>&lt;Api&lt;State, Error&gt;, ApiError&gt;
+<span class="kw">pub fn </span>define_api&lt;State, Types: NodeType, Ver: StaticVersionType + <span class="lifetime">'static</span>&gt;(
+    options: <span class="kw-2">&amp;</span>Options,
+) -&gt; <span class="prelude-ty">Result</span>&lt;Api&lt;State, Error, Ver&gt;, ApiError&gt;
 <span class="kw">where
     </span>State: <span class="lifetime">'static </span>+ Send + Sync + ReadState,
     &lt;State <span class="kw">as </span>ReadState&gt;::State: Send + Sync + BuilderDataSource&lt;Types&gt;,
@@ -312,7 +320,7 @@
         <span class="kw-2">&amp;</span><span class="lifetime">'a </span>TaggedBase64,
     &gt;&gt;::Error: Display,
 {
-    <span class="kw">let </span><span class="kw-2">mut </span>api = load_api::&lt;State, Error&gt;(
+    <span class="kw">let </span><span class="kw-2">mut </span>api = load_api::&lt;State, Error, Ver&gt;(
         options.api_path.as_ref(),
         <span class="macro">include_str!</span>(<span class="string">"../api/builder.toml"</span>),
         options.extensions.clone(),
@@ -359,13 +367,15 @@
     <span class="prelude-val">Ok</span>(api)
 }
 
-<span class="kw">pub fn </span>submit_api&lt;State, Types: NodeType&gt;(options: <span class="kw-2">&amp;</span>Options) -&gt; <span class="prelude-ty">Result</span>&lt;Api&lt;State, Error&gt;, ApiError&gt;
+<span class="kw">pub fn </span>submit_api&lt;State, Types: NodeType, Ver: StaticVersionType + <span class="lifetime">'static</span>&gt;(
+    options: <span class="kw-2">&amp;</span>Options,
+) -&gt; <span class="prelude-ty">Result</span>&lt;Api&lt;State, Error, Ver&gt;, ApiError&gt;
 <span class="kw">where
     </span>State: <span class="lifetime">'static </span>+ Send + Sync + WriteState,
     &lt;State <span class="kw">as </span>ReadState&gt;::State: Send + Sync + AcceptsTxnSubmits&lt;Types&gt;,
     Types: NodeType,
 {
-    <span class="kw">let </span><span class="kw-2">mut </span>api = load_api::&lt;State, Error&gt;(
+    <span class="kw">let </span><span class="kw-2">mut </span>api = load_api::&lt;State, Error, Ver&gt;(
         options.api_path.as_ref(),
         <span class="macro">include_str!</span>(<span class="string">"../api/submit.toml"</span>),
         options.extensions.clone(),
@@ -374,7 +384,7 @@
         .post(<span class="string">"submit_txn"</span>, |req, state| {
             <span class="kw">async move </span>{
                 <span class="kw">let </span>tx = req
-                    .body_auto::&lt;&lt;Types <span class="kw">as </span>NodeType&gt;::Transaction&gt;()
+                    .body_auto::&lt;&lt;Types <span class="kw">as </span>NodeType&gt;::Transaction, Ver&gt;(Ver::instance())
                     .context(TxnUnpackSnafu)<span class="question-mark">?</span>;
                 state.submit_txn(tx).<span class="kw">await</span>.context(TxnSubmitSnafu)<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(())
